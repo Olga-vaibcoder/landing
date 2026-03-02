@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-конференция: Ключи — Битрикс24</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0d12;
+            --bg-gradient: linear-gradient(180deg, #06080a 0%, #080b10 15%, #0a0e16 30%, #0c121c 45%, #0d1624 60%, #0c182a 75%, #0a1526 90%, #080e18 100%);
+            --accent-purple: #4a9eff;
+            --accent-metallic: #b0c4d8;
+            --text-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.88);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --btn-bg: linear-gradient(135deg, #6ec2ff 0%, #4da3ff 50%, #3d8ef0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 24px 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Montserrat', -apple-system, sans-serif;
+        }
+
+        .hero-logo {
+            max-width: 320px;
+            height: auto;
+            margin-bottom: 9px;
+            display: block;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .hero-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-white);
+            letter-spacing: 0.02em;
+        }
+
+        .hero-title-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .hero .title {
+            font-size: clamp(2.25rem, 6vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(74, 158, 255, 0.4);
+        }
+
+        .hero .subtitle {
+            max-width: 720px;
+            margin: 0 auto 48px;
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            font-weight: 400;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        .hero .cta-wrapper { margin-bottom: 8px; }
+
+        .hero .audience-section {
+            margin-top: 72px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .audience-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .audience-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 220px;
+            max-width: 320px;
+            padding: 18px 22px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .audience-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(74, 158, 255, 0.3);
+        }
+
+        .audience-card-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4da3ff 0%, #3d8ef0 100%);
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 2px 8px rgba(77, 163, 255, 0.4);
+        }
+
+        .audience-card-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-white);
+            line-height: 1.4;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6ec2ff 0%, #4da3ff 50%, #3d8ef0 100%);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 4px 24px rgba(77, 163, 255, 0.55);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #85ceff 0%, #5ab0ff 50%, #4a9aff 100%);
+            box-shadow: 0 8px 32px rgba(77, 163, 255, 0.65);
+        }
+
+        .cta-section { text-align: center; padding: 48px 0; }
+        .about .cta-section { padding-bottom: 16px; }
+        .program { padding-top: 27px; }
+
+        /* О чём */
+        .about { padding-top: 60px; padding-bottom: 60px; }
+        .about-list { display: flex; flex-direction: column; gap: 0; }
+        .about-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .about-item:last-child { border-bottom: none; }
+        .about-item-num { font-size: 2rem; font-weight: 700; color: var(--accent-purple); min-width: 48px; }
+        .about-item-text { font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); }
+
+        /* Программа */
+        .program-list { display: flex; flex-direction: column; gap: 32px; }
+        .program-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            transition: background 0.2s;
+        }
+        .program-item:hover { background: rgba(255, 255, 255, 0.08); }
+        .program-header { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; margin-bottom: 16px; }
+        .program-time { font-size: 1rem; font-weight: 600; color: var(--accent-purple); white-space: nowrap; }
+        .program-item h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+        .program-theses { margin: 16px 0; padding-left: 20px; }
+        .program-theses li { margin-bottom: 8px; line-height: 1.5; color: var(--text-muted); font-size: 0.95rem; }
+        .program-speaker { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
+        .program-speaker-photo {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .program-speaker-icon {
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4da3ff 0%, #3d8ef0 100%);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 2px 8px rgba(77, 163, 255, 0.4);
+        }
+        .program-speaker-info { font-size: 0.9rem; color: var(--accent-metallic); }
+        .program-speaker .or { color: var(--text-muted); font-weight: 500; margin: 0 6px; }
+
+        /* Организаторы */
+        .organizers {
+            background: rgba(4, 8, 14, 0.4);
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .organizer-card {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 32px 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+        }
+        .organizer-logo {
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .organizer-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+        @media (max-width: 640px) {
+            .section-title { font-size: 2rem; }
+            .about-item { flex-direction: column; gap: 12px; }
+            .program-item { padding: 20px; }
+            .audience-cards { flex-direction: column; align-items: stretch; }
+            .audience-card { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <img class="hero-logo" src="битрикс24.png" alt="Битрикс24">
+            <div class="hero-badges">
+                <span class="hero-badge">Онлайн-конференция</span>
+                <span class="hero-badge">16 апреля</span>
+            </div>
+            <div class="hero-title-wrap">
+                <h1 class="title">«Ключи»</h1>
+            </div>
+            <p class="subtitle">Узнайте о главных трендах рынка недвижимости, новых стандартах продаж и клиентского сервиса, а также о реальных кейсах автоматизации бизнеса с Битрикс24</p>
+            <div class="cta-wrapper">
+                <a href="#register" class="cta-btn">Участвовать бесплатно</a>
+            </div>
+            <div class="audience-section">
+                <div class="audience-cards">
+                    <div class="audience-card">
+                        <div class="audience-card-icon">✓</div>
+                        <span class="audience-card-text">Руководителям агентств недвижимости</span>
+                    </div>
+                    <div class="audience-card">
+                        <div class="audience-card-icon">✓</div>
+                        <span class="audience-card-text">Девелоперам и застройщикам</span>
+                    </div>
+                    <div class="audience-card">
+                        <div class="audience-card-icon">✓</div>
+                        <span class="audience-card-text">Строительным и ремонтным организациям</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <h2 class="section-title">О чём</h2>
+        <div class="about-list">
+            <div class="about-item">
+                <span class="about-item-num">1</span>
+                <p class="about-item-text">Тренды и направления развития рынка недвижимости: макроэкономика, поведение потребителей, цифровизация, новые ниши</p>
+            </div>
+            <div class="about-item">
+                <span class="about-item-num">2</span>
+                <p class="about-item-text">Продажи: путь клиента, репутация и отзывы</p>
+            </div>
+            <div class="about-item">
+                <span class="about-item-num">3</span>
+                <p class="about-item-text">Автоматизация бизнеса в недвижимости: кейсы клиентов Битрикс24</p>
+            </div>
+        </div>
+        <div class="cta-section">
+            <a href="#register" class="cta-btn">Участвовать бесплатно</a>
+        </div>
+    </section>
+
+    <section class="section program" id="program">
+        <h2 class="section-title">Программа</h2>
+        <div class="program-list">
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">11:00–11:05</span></div>
+                <h3>Вступительное слово</h3>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">11:05–11:30</span></div>
+                <h3>Тренды и направления развития рынка недвижимости</h3>
+                <ul class="program-theses">
+                    <li>Макроэкономическая ситуация и её влияние на все сегменты недвижимости</li>
+                    <li>Изменение поведения потребителей: что ждут клиенты от застройщиков, агентств и подрядчиков</li>
+                    <li>Цифровизация как неотъемлемая часть бизнеса: от онлайн-показов до автоматизации управления</li>
+                </ul>
+                <div class="program-speaker">
+                    <img class="program-speaker-photo" src="speakers/Посредников.jpg" alt="Михаил Посредников">
+                    <span class="program-speaker-info">Михаил Посредников, коммерческий директор ЦИАН <span class="or">или</span> Сергей Ерёмкин, управляющий директор Авито Недвижимость</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">11:30–11:50</span></div>
+                <h3>Что на самом деле покупает клиент: клиентский сервис как драйвер продаж в недвижимости</h3>
+                <ul class="program-theses">
+                    <li>Клиентский путь в недвижимости: от первого касания до пост-продажного обслуживания</li>
+                    <li>Роль репутации и отзывов в выборе компании на рынке недвижимости</li>
+                    <li>За чем теперь приходит клиент?</li>
+                    <li>Кейсы компаний, которые выросли на сервисе, когда рынок падал</li>
+                </ul>
+                <div class="program-speaker">
+                    <img class="program-speaker-photo" src="speakers/ильдар.png" alt="Ильдар Хусаинов">
+                    <span class="program-speaker-info">Ильдар Хусаинов, генеральный директор Этажи</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">11:50–12:10</span></div>
+                <h3>Автоматизация бизнеса в недвижимости: Битрикс24 как единая операционная система для девелопмента, агентств и строительства</h3>
+                <ul class="program-theses">
+                    <li>Управление продажами: воронки, сделки, бронирование объектов, расчёт ипотеки</li>
+                    <li>Контроль строительства и ремонта: проекты, задачи, сметы, мобильное приложение для прорабов</li>
+                    <li>Единое коммуникационное пространство: телефония, онлайн-консультант, чаты с клиентами</li>
+                    <li>Сквозная аналитика и отчётность для собственника</li>
+                </ul>
+                <div class="program-speaker">
+                    <img class="program-speaker-photo" src="speakers/беляев.png" alt="Михаил Беляев">
+                    <span class="program-speaker-info">Михаил Беляев, руководитель образовательного направления Битрикс24</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">12:10–12:30</span></div>
+                <h3>1 Кейс клиента Битрикс24: CRM</h3>
+                <ul class="program-theses">
+                    <li>Как мы увеличили конверсию в сделку и сократили время на оформление с помощью CRM</li>
+                </ul>
+                <div class="program-speaker">
+                    <div class="program-speaker-icon">✓</div>
+                    <span class="program-speaker-info">Агентство недвижимости SKY <span class="or">или</span> Строительный холдинг ГК Точно</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">12:30–12:50</span></div>
+                <h3>2 Кейс клиента Битрикс24: Задачи</h3>
+                <ul class="program-theses">
+                    <li>Эффективность и контроль: управление проектами и подрядчиками с помощью автоматизации</li>
+                </ul>
+                <div class="program-speaker">
+                    <div class="program-speaker-icon">✓</div>
+                    <span class="program-speaker-info">Девелоперская компания Level Group</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">12:50–13:20</span></div>
+                <h3>Где искать клиентов в 2026 году?</h3>
+                <ul class="program-theses">
+                    <li>Где скрываются неочевидные источники клиентов, о которых забывают 90% компаний на рынке недвижимости</li>
+                    <li>Как перестать гоняться за новыми лидами и начать зарабатывать на тех, кто уже рядом с вашим бизнесом</li>
+                </ul>
+                <div class="program-speaker">
+                    <div class="program-speaker-icon">✓</div>
+                    <span class="program-speaker-info">Игорь Манн, маркетер <span class="or">или</span> Олег Торбосов, владелец агентства недвижимости Whitewill</span>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-header"><span class="program-time">13:20–13:30</span></div>
+                <h3>Завершение конференции</h3>
+            </div>
+        </div>
+        <div class="cta-section" id="register">
+            <a href="#" class="cta-btn">Участвовать бесплатно</a>
+        </div>
+    </section>
+
+    <section class="organizers">
+        <h2 class="section-title">Организатор</h2>
+        <div class="organizer-card">
+            <img class="organizer-logo" src="битрикс24.png" alt="Битрикс24">
+            <p class="organizer-desc">Набор инструментов для командной работы и управления бизнесом</p>
+        </div>
+    </section>
+</body>
+</html>
