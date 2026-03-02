@@ -306,13 +306,56 @@
         }
         .organizer-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
+        /* Экран ввода пароля */
+        #password-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        #password-overlay.hidden { display: none; }
+        .password-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+        }
+        .password-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .password-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+        .password-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .password-box input::placeholder { color: rgba(255,255,255,0.5); }
+        .password-box .error { color: #f87171; font-size: 0.9rem; margin-bottom: 12px; display: none; }
+        .password-box .error.visible { display: block; }
+
         @media (max-width: 640px) {
             .hero-key-img {
-                max-height: 35vh;
-                right: 2%;
+                display: none !important;
             }
-            .hero-key-img-left {
-                left: 2%;
+            body {
+                background-attachment: scroll;
             }
             .section-title { font-size: 2rem; }
             .about-item { flex-direction: column; gap: 12px; }
@@ -323,6 +366,20 @@
     </style>
 </head>
 <body>
+    <!-- Экран ввода пароля. Пароль по умолчанию: kluchi2026 (измените в скрипте ниже) -->
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>Введите пароль</h2>
+            <p>Доступ к странице ограничен</p>
+            <p class="error" id="password-error">Неверный пароль</p>
+            <form id="password-form">
+                <input type="password" id="password-input" placeholder="Пароль" autocomplete="off">
+                <button type="submit" class="cta-btn" style="margin-top: 8px;">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="main-content">
     <section class="hero">
         <img class="hero-key-img" src="ключ.png" alt="" aria-hidden="true">
         <img class="hero-key-img hero-key-img-left" src="ключ.png" alt="" aria-hidden="true">
@@ -485,5 +542,43 @@
             <p class="organizer-desc">Набор инструментов для командной работы и управления бизнесом</p>
         </div>
     </section>
+    </div>
+
+    <script>
+        (function() {
+            var PASS = 'kluchi2026'; // Измените пароль здесь
+            var STORAGE_KEY = 'landing_access';
+            var overlay = document.getElementById('password-overlay');
+            var mainContent = document.getElementById('main-content');
+            var form = document.getElementById('password-form');
+            var input = document.getElementById('password-input');
+            var err = document.getElementById('password-error');
+
+            function showContent() {
+                overlay.classList.add('hidden');
+                mainContent.style.display = '';
+                sessionStorage.setItem(STORAGE_KEY, '1');
+            }
+
+            if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+                showContent();
+                overlay.classList.add('hidden');
+            } else {
+                mainContent.style.display = 'none';
+            }
+
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                err.classList.remove('visible');
+                if (input.value === PASS) {
+                    showContent();
+                } else {
+                    err.classList.add('visible');
+                    input.value = '';
+                    input.focus();
+                }
+            };
+        })();
+    </script>
 </body>
 </html>
