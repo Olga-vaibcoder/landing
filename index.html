@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0d12;
-            --bg-gradient: linear-gradient(180deg, #06080a 0%, #080b10 15%, #0a0e16 30%, #0c121c 45%, #0d1624 60%, #0c182a 75%, #0a1526 90%, #080e18 100%);
+            --bg-dark: #353840;
+            --bg-gradient: linear-gradient(180deg, #4a4d52 0%, #3d4045 25%, #353840 50%, #2e3240 70%, #3730a3 90%, #4338ca 100%);
             --accent-purple: #4a9eff;
             --accent-metallic: #b0c4d8;
             --text-white: #ffffff;
@@ -61,6 +61,25 @@
             overflow: hidden;
         }
 
+        .hero-key-img {
+            position: absolute;
+            right: 5%;
+            top: 58%;
+            transform: translateY(-50%);
+            max-height: 45vh;
+            width: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-key-img-left {
+            right: auto;
+            left: 5%;
+            top: 30%;
+            transform: translateY(-50%) scaleX(-1) rotate(-15deg) scale(1.05);
+        }
+
         .hero .hero-content {
             position: relative;
             z-index: 1;
@@ -100,11 +119,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 24px;
             margin-bottom: 14px;
         }
 
         .hero .title {
-            font-size: clamp(2.25rem, 6vw, 3.25rem);
+            font-size: clamp(2.5rem, 7vw, 3.75rem);
             font-weight: 700;
             line-height: 1.2;
             letter-spacing: -0.02em;
@@ -197,7 +217,6 @@
 
         .cta-section { text-align: center; padding: 48px 0; }
         .about .cta-section { padding-bottom: 16px; }
-        .program { padding-top: 27px; }
 
         /* О чём */
         .about { padding-top: 60px; padding-bottom: 60px; }
@@ -253,10 +272,18 @@
         .program-speaker-info { font-size: 0.9rem; color: var(--accent-metallic); }
         .program-speaker .or { color: var(--text-muted); font-weight: 500; margin: 0 6px; }
 
+        .program {
+            padding-top: 27px;
+        }
+
         /* Организаторы */
         .organizers {
-            background: rgba(4, 8, 14, 0.4);
-            padding: 60px 24px;
+            background: rgba(53, 56, 64, 0.5);
+            padding: 30px 24px 60px;
+            text-align: center;
+        }
+        .organizers .section-title {
+            margin-bottom: 28px;
             text-align: center;
         }
         .organizer-card {
@@ -266,7 +293,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 20px 32px 40px;
+            padding: 0 32px 24px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
@@ -274,12 +301,19 @@
         .organizer-logo {
             max-width: 400px;
             height: auto;
-            margin-bottom: 6px;
+            margin-bottom: 2px;
             display: block;
         }
         .organizer-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
         @media (max-width: 640px) {
+            .hero-key-img {
+                max-height: 35vh;
+                right: 2%;
+            }
+            .hero-key-img-left {
+                left: 2%;
+            }
             .section-title { font-size: 2rem; }
             .about-item { flex-direction: column; gap: 12px; }
             .program-item { padding: 20px; }
@@ -290,6 +324,8 @@
 </head>
 <body>
     <section class="hero">
+        <img class="hero-key-img" src="ключ.png" alt="" aria-hidden="true">
+        <img class="hero-key-img hero-key-img-left" src="ключ.png" alt="" aria-hidden="true">
         <div class="hero-content">
             <img class="hero-logo" src="битрикс24.png" alt="Битрикс24">
             <div class="hero-badges">
